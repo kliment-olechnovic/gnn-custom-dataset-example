@@ -1,14 +1,14 @@
 # A real-world example of creating custom datasets in PyTorch Geometric
 
-## Motivation
+This repository is intended purely to demonstrate how to make a graph dataset for PyTorch Geometric from graph vertices and edges stored in CSV files.
 
-This is a node-prediction GNN training/evaluation example with a very small amount of data, intended purely to demonstrate how to make a graph dataset for PyTorch Geometric from graph vertices and edges stored in CSV files.
+The demonstration is done through a node-prediction GNN training/evaluation example with a very small amount of code and data.
 
 ## Usage
 
 Main usage is to read all the "*.py" scripts.
 
-The scripts can also be executed, for eaxmple:
+The scripts can also be executed, for example:
 
 	# train GNN
     python run_training.py
