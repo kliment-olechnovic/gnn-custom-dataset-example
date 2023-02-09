@@ -14,10 +14,17 @@ The scripts can also be executed, for example:
     python run_training.py
     
     # test a trained GNN model saved after epoch 5
-    ./run_evaluation.py testing_data ./output_saved_trained_models/epoch5.pth
+    python run_evaluation.py testing_data ./output_saved_trained_models/epoch5.pth
     
     # test multiple saved trained GNN models
     find "./output_saved_trained_models/" -type f | sort -V | xargs python ./run_evaluation.py testing_data
+    
+    # use a single trained model to predict vertex values for a single graph, and save the predictions to a file
+    python run_inference_for_one_graph.py \
+      ./output_saved_trained_models/epoch15.pth \
+      ./input_graph_CSV_files/data/1A22/1A22_sr1_vertices_in.csv \
+      ./input_graph_CSV_files/data/1A22/1A22_sr1_edges.csv \
+      ./output_vertex_predictions.txt
 
 ## System requirements
 
