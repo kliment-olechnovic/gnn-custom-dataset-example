@@ -4,19 +4,18 @@ import torch_geometric
 
 import custom_dataset_from_graph_csv_files
 import custom_gnn_model
-import custom_optimizer
 
 dataset=custom_dataset_from_graph_csv_files.Dataset(root='training_data')
 dataset.shuffle()
 
-train_loader=torch_geometric.loader.DataLoader(dataset, batch_size=32)
+train_loader=torch_geometric.loader.DataLoader(dataset, batch_size=4)
 
 device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 model=custom_gnn_model.GNN()
 model=model.to(device)
 
-optimizer=custom_optimizer.optimizer(model)
+optimizer=torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-4)
 
 def train():
 	model.train()
@@ -35,7 +34,7 @@ output_directory='./output_saved_trained_models'
 if not os.path.exists(output_directory):
 	os.makedirs(output_directory)
 
-number_of_epochs=15;
+number_of_epochs=20;
 saving_period=1;
 
 for epoch in range(1, number_of_epochs+1):
