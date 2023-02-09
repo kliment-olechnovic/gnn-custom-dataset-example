@@ -8,7 +8,7 @@ import custom_gnn_model
 dataset=custom_dataset_from_graph_csv_files.Dataset(root='training_data')
 dataset.shuffle()
 
-train_loader=torch_geometric.loader.DataLoader(dataset, batch_size=4)
+data_loader=torch_geometric.loader.DataLoader(dataset, batch_size=4)
 
 device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -20,7 +20,7 @@ optimizer=torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-4)
 def train():
 	model.train()
 	loss_sum=0
-	for data in train_loader:
+	for data in data_loader:
 		data=data.to(device)
 		optimizer.zero_grad()
 		pred_y=model(data)
@@ -34,11 +34,11 @@ output_directory='./output_saved_trained_models'
 if not os.path.exists(output_directory):
 	os.makedirs(output_directory)
 
-number_of_epochs=20;
+number_of_epochs=25;
 saving_period=1;
 
 for epoch in range(1, number_of_epochs+1):
-	print(epoch, train()/len(dataset))
+	print('epoch =', epoch, ' mse =', train()/len(dataset))
 	if (epoch==0) or (epoch%saving_period==0) or (epoch==number_of_epochs):
 		torch.save(model, output_directory+'/epoch'+str(epoch)+'.pth')
 

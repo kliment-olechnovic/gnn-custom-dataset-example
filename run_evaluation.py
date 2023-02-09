@@ -26,5 +26,5 @@ for model_file in model_files:
 	for data in dataset:
 		mse_sum+=calc_mse(data)
 	
-	print(model_file, mse_sum/len(dataset))
+	print('model =', model_file, ' mse =', mse_sum/len(dataset))
 
