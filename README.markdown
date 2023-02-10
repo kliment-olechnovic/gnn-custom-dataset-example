@@ -38,3 +38,22 @@ Example of installing prerequisites:
     conda install pytorch -c pytorch
     conda install pyg -c pyg
 
+## Remarks about data
+
+The included input graphs are already prepared for GNN training and application.
+The graph preparation code is not included, but below are the main recommendations for the graphs to work with the provided training and inference code.
+
+### Graph connectivity
+
+The graphs should have bidirectional connections and self-connections.
+That is, in any '*_edges.csv' file:
+
+ * if there is (i -> j) edge, there should also be (j -> i) edge with the same weight
+ * there should be (i -> i) edge with an apppropriate weight for every vertex id i
+
+### Normalization of vertex and edge feature values
+
+All the vertex and edge feature values should be normalized universally (not on per-graph basis, but based on some global statistics) - for example, converted to z-scores using mean and standard deviation values known beforehand or derived from all the graphs used in training:
+
+    z_score = (x - mean) / standard_deviation
+
