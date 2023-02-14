@@ -30,13 +30,22 @@ The scripts can also be executed, for example:
 
 Example of installing prerequisites:
 
-    wget https://repo.anaconda.com/miniconda/Miniconda3-py39_4.11.0-Linux-x86_64.sh
-    bash Miniconda3-py39_4.11.0-Linux-x86_64.sh
+    # download an indstall lates Miniconda
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    bash Miniconda3-latest-Linux-x86_64.sh
     
     source ~/miniconda3/bin/activate
     
-    conda install pytorch -c pytorch
+    # install PyTorch using instructiuons from 'https://pytorch.org/get-started/locally/'
+    # below is an example PyTorch installation command:
+    conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
+    
+    # install PyTorch Geometric using instructiuons from 'https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html'
+    # below is an example PyTorch Geometric installation command:
     conda install pyg -c pyg
+    
+    # install Pandas, to use for reading CSV files
+    conda install pandas
 
 ## Remarks about data
 
