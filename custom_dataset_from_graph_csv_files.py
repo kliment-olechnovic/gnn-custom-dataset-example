@@ -25,9 +25,9 @@ def read_graph(files_prefix):
 	return graph
 
 
-class Dataset(torch_geometric.data.InMemoryDataset):
-	def __init__(self, root, transform=None, pre_transform=None, pre_filter=None):
-		super().__init__(root, transform, pre_transform, pre_filter)
+class CustomDataset(torch_geometric.data.InMemoryDataset):
+	def __init__(self, root, transform=None, pre_transform=None, pre_filter=None, log=False):
+		super().__init__(root, transform, pre_transform, pre_filter, log)
 		self.data, self.slices = torch.load(self.processed_paths[0])
 	
 	@property

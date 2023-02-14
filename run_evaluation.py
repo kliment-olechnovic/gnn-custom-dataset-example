@@ -6,7 +6,7 @@ import custom_dataset_from_graph_csv_files
 dataset_name=sys.argv[1]
 model_files=sys.argv[2:]
 
-dataset=custom_dataset_from_graph_csv_files.Dataset(root=dataset_name)
+dataset=custom_dataset_from_graph_csv_files.CustomDataset(root=dataset_name)
 
 device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 

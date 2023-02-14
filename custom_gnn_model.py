@@ -2,7 +2,7 @@ import torch
 import torch_geometric
 
 
-class GNN(torch.nn.Module):
+class CustomGNN(torch.nn.Module):
 	def __init__(self):
 		super().__init__()
 		self.conv1=torch_geometric.nn.GATv2Conv(15, 16, heads=8, edge_dim=1, add_self_loops=False, dropout=0.25)

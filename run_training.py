@@ -5,14 +5,14 @@ import torch_geometric
 import custom_dataset_from_graph_csv_files
 import custom_gnn_model
 
-dataset=custom_dataset_from_graph_csv_files.Dataset(root='training_data')
+dataset=custom_dataset_from_graph_csv_files.CustomDataset(root='training_data')
 dataset.shuffle()
 
 data_loader=torch_geometric.loader.DataLoader(dataset, batch_size=4)
 
 device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-model=custom_gnn_model.GNN()
+model=custom_gnn_model.CustomGNN()
 model=model.to(device)
 
 optimizer=torch.optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-4)
