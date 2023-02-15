@@ -1,0 +1,51 @@
+Bootstrap: docker
+From: debian:testing
+
+%post
+    apt-get update
+
+    # Set mirror for pbuilder or it will flood the screen 
+    echo pbuilder pbuilder/mirrorsite string http://deb.debian.org/debian | debconf-set-selections
+
+    # Prepare to build packages
+    apt-get install --yes dctrl-tools git git-buildpackage
+    mkdir build && cd build
+
+    # Build and install parallel-hashmap
+    git clone https://salsa.debian.org/science-team/parallel-hashmap && cd parallel-hashmap
+    git checkout upstream && git checkout master
+    mk-build-deps --install --tool 'apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' --remove
+    rm *.buildinfo *.changes
+    gbp buildpackage -uc -us
+    debi
+    cd ..
+
+    # Build and install pytorch-scatter
+    git clone https://salsa.debian.org/deeplearning-team/pytorch-scatter && cd pytorch-scatter
+    git checkout upstream && git checkout master
+    mk-build-deps --install --tool 'apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' --remove
+    rm *.buildinfo *.changes
+    gbp buildpackage -uc -us
+    debi
+    cd ..
+
+    # Build and install pytorch-sparse
+    git clone https://salsa.debian.org/deeplearning-team/pytorch-sparse && cd pytorch-sparse
+    git checkout upstream && git checkout master
+    mk-build-deps --install --tool 'apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' --remove
+    rm *.buildinfo *.changes
+    gbp buildpackage -uc -us
+    debi
+    cd ..
+
+    # Build and install pytorch-geometric
+    git clone https://salsa.debian.org/deeplearning-team/pytorch-geometric && cd pytorch-geometric
+    git checkout upstream && git checkout master
+    mk-build-deps --install --tool 'apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes' --remove
+    rm *.buildinfo *.changes
+    DEB_BUILD_OPTIONS=nocheck gbp buildpackage -uc -us
+    debi
+    cd ..
+
+    # Install packaged dependencies
+    apt-get install --yes python3-numpy python3-pandas
