@@ -28,9 +28,11 @@ The scripts can also be executed, for example:
 
 ## System requirements
 
-Example of installing prerequisites:
+### Using Miniconda (or Anaconda)
 
-    # download an indstall lates Miniconda
+Example of installing prerequisites with Miniconda:
+
+    # download an install latest Miniconda
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
     bash Miniconda3-latest-Linux-x86_64.sh
     
