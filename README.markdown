@@ -47,6 +47,18 @@ Example of installing prerequisites:
     # install Pandas, to use for reading CSV files
     conda install pandas
 
+### Using Apptainer
+
+Alternatively, [Apptainer](https://apptainer.org) container can be built from the image supplied among the files:
+
+    # build Apptainer container
+    apptainer build container.sif container.def
+    
+    # enter the container
+    apptainer shell container.sif
+
+It should be noted that Apptainer's container may not be able to use host's GPU.
+
 ## Remarks about data
 
 The included input graphs are already prepared for GNN training and application.
