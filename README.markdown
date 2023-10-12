@@ -37,14 +37,13 @@ Example of installing prerequisites with Miniconda:
     bash Miniconda3-latest-Linux-x86_64.sh
     
     source ~/miniconda3/bin/activate
+
+    # install PyTorch using instructions from 'https://pytorch.org/get-started/locally/'
+    conda install pytorch torchvision torchaudio pytorch-cuda=12.1 -c pytorch -c nvidia
     
-    # install PyTorch using instructiuons from 'https://pytorch.org/get-started/locally/'
-    # below is an example PyTorch installation command:
-    conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia
-    
-    # install PyTorch Geometric using instructiuons from 'https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html'
-    # below is an example PyTorch Geometric installation command:
-    conda install pyg -c pyg
+    # install PyTorch Geometric using instructions from 'https://pytorch-geometric.readthedocs.io/en/latest/install/installation.html'
+    pip install torch_geometric
+    pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.1.0+cu121.html
     
     # install Pandas, to use for reading CSV files
     conda install pandas
